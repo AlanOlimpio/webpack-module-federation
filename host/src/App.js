@@ -1,14 +1,13 @@
 import React, { Suspense } from 'react';
-import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import './App.css';
 import Layout from './components/Layout';
 import Loading from './components/Loading';
 
 const DashboardPage = React.lazy(() => import('DashboardApp/DashboardPage'));
-const ListPage = React.lazy(() => import('ListApp/ListPage'));
+const ListPage = React.lazy(() => import('ListApp/ListRoutes'));
 const RegisterPage = React.lazy(() => import('RegisterApp/RegisterPage'));
-const ModalRegister = React.lazy(() => import('RegisterApp/ModalRegister'));
 
 const App = () => {
   const routes = createBrowserRouter([
@@ -30,23 +29,12 @@ const App = () => {
           ),
         },
         {
-          path: 'list',
+          path: 'list/*',
           element: (
             <Suspense fallback={<Loading />}>
               <ListPage />
-              <Outlet />
             </Suspense>
           ),
-          children: [
-            {
-              path: 'register',
-              element: (
-                <Suspense fsallback={<Loading />}>
-                  <ModalRegister />
-                </Suspense>
-              ),
-            },
-          ],
         },
         {
           path: 'register',

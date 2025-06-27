@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import {
   Container,
   Col,
@@ -78,6 +78,9 @@ function List() {
             Open Modal Register
           </Button>
         </Col>
+      </Row>
+      <Row>
+        <Outlet />
       </Row>
     </Container>
   );

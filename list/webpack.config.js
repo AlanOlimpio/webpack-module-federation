@@ -7,6 +7,7 @@ module.exports = {
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, './dist'),
+    publicPath: 'auto',
   },
   mode: 'development',
   devServer: {
@@ -46,7 +47,10 @@ module.exports = {
       name: 'ListApp',
       filename: 'remoteEntry.js',
       exposes: {
-        './ListPage': './src/components/List',
+        './ListRoutes': './src/components/ListRoutes',
+      },
+      remotes: {
+        RegisterApp: 'RegisterApp@http://localhost:9003/remoteEntry.js',
       },
       shared: {
         ...dependencies,
@@ -60,7 +64,7 @@ module.exports = {
         },
         'react-router-dom': {
           singleton: true,
-          requiredVersion: dependencies[' react-router-dom'],
+          requiredVersion: dependencies['react-router-dom'],
         },
       },
     }),

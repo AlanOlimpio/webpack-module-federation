@@ -8,15 +8,18 @@ module.exports = {
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, './dist'),
+    publicPath: '/',
   },
   mode: 'development',
   devServer: {
+    historyApiFallback: {
+      index: '/index.html',
+    },
     static: {
       directory: path.join(__dirname, 'public'),
     },
     compress: true,
     port: 9001,
-    historyApiFallback: true,
     allowedHosts: 'all',
     devMiddleware: {
       writeToDisk: true,
@@ -53,10 +56,10 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: './public/index.html',
-      title: 'Register',
+      title: 'Host',
     }),
     new ModuleFederationPlugin({
-      name: 'Register',
+      name: 'Host',
       remotes: {
         DashboardApp: 'DashboardApp@http://localhost:9002/remoteEntry.js',
         ListApp: 'ListApp@http://localhost:9004/remoteEntry.js',
@@ -75,7 +78,7 @@ module.exports = {
         },
         'react-router-dom': {
           singleton: true,
-          requiredVersion: dependencies[' react-router-dom'],
+          requiredVersion: dependencies['react-router-dom'],
         },
       },
     }),

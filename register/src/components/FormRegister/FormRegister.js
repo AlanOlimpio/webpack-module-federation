@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Button, Col, Form, Row } from 'react-bootstrap';
-import { stringify } from 'uuid';
 
 const statesNames = [
   'AC',

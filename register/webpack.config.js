@@ -8,6 +8,7 @@ module.exports = {
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, './dist'),
+    publicPath: 'auto',
   },
   mode: 'development',
   devServer: {
@@ -62,7 +63,7 @@ module.exports = {
         },
         'react-router-dom': {
           singleton: true,
-          requiredVersion: dependencies[' react-router-dom'],
+          requiredVersion: dependencies['react-router-dom'],
         },
       },
     }),
