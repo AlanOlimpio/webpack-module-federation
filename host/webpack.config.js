@@ -1,8 +1,8 @@
+require('dotenv/config');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
 const { dependencies } = require('./package.json');
-
 module.exports = {
   entry: './src/index.js',
   output: {
@@ -10,7 +10,7 @@ module.exports = {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/',
   },
-  mode: 'development',
+  mode: process.env.NODE_ENV,
   devServer: {
     historyApiFallback: {
       index: '/index.html',
@@ -37,6 +37,7 @@ module.exports = {
         options: {
           presets: [require.resolve('@babel/preset-react')],
         },
+        exclude: /node_modules/,
       },
       {
         test: /\.(png|jpg|jpeg)$/,
@@ -61,10 +62,9 @@ module.exports = {
     new ModuleFederationPlugin({
       name: 'Host',
       remotes: {
-        DashboardApp: 'DashboardApp@http://localhost:9002/remoteEntry.js',
-        ListApp: 'ListApp@http://localhost:9004/remoteEntry.js',
-        RegisterApp: 'RegisterApp@http://localhost:9003/remoteEntry.js',
-        ModalRegister: 'RegisterApp@http://localhost:9003/remoteEntry.js',
+        DashboardApp: `DashboardApp@${process.env.MICRO_FRONT_END_DASHBOARD}/remoteEntry.js`,
+        ListApp: `ListApp@${process.env.MICRO_FRONT_END_LIST}/remoteEntry.js`,
+        RegisterApp: `RegisterApp@${process.env.MICRO_FRONT_END_REGISTER}/remoteEntry.js`,
       },
       shared: {
         ...dependencies,

@@ -9,7 +9,7 @@ module.exports = {
     path: path.resolve(__dirname, './dist'),
     publicPath: 'auto',
   },
-  mode: 'development',
+  mode: 'production',
   devServer: {
     static: {
       directory: path.join(__dirname, 'public'),
@@ -30,6 +30,7 @@ module.exports = {
         options: {
           presets: [require.resolve('@babel/preset-react')],
         },
+        exclude: /node_modules/,
       },
       {
         test: /\.css$/,

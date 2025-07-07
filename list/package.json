@@ -6,8 +6,8 @@
   "author": "Alan Olimpio",
   "license": "MIT",
   "scripts": {
-    "build": "webpack",
-    "start": "webpack serve --open"
+    "build": "webpack --mode production",
+    "start": "webpack serve --mode development --open"
   },
   "devDependencies": {
     "@babel/core": "^7.27.4",

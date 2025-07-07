@@ -6,8 +6,8 @@
   "author": "Alan Olimpio",
   "license": "MIT",
   "scripts": {
-    "build": "webpack",
-    "start": "webpack serve --open"
+    "build": "webpack --mode production",
+    "start": "webpack serve --mode development --open"
   },
   "devDependencies": {
     "@babel/core": "^7.27.4",
@@ -26,6 +26,7 @@
     "webpack-dev-server": "^5.2.2"
   },
   "dependencies": {
+    "dotenv": "^17.0.0",
     "react-bootstrap": "^2.10.10",
     "svg-inline-loader": "^0.8.2"
   }

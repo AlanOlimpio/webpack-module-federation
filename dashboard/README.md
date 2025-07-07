@@ -36,3 +36,4 @@ Navega para pasta de cada micro front end execute npm i ou yarn para instalar as
    ```
 Depois, acesse <a href="http://localhost:9002/" target="_blank">http://localhost:9002/</a> no seu navegador. 
 
+# dashboard
